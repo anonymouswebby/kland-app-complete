@@ -1,0 +1,50 @@
+<div class="page-container" *ngIf="!isLoggedIn">
+  <div class="login-container">
+    <img src="assets/kland-logo.png" alt="K-Land Logo" class="logo">
+    <h2>Enter Your Email to Continue</h2>
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+      <input type="email" name="email" [(ngModel)]="email" placeholder="Email" required>
+      <input type="password" name="password" [(ngModel)]="password" placeholder="Password" required>
+      <div class="forgot">Forgot password?</div>
+      <button type="submit">Login</button>
+    </form>
+    <div class="footer">Don't have an account? <a href="#">Create Account</a></div>
+  </div>
+</div>
+
+<div class="page-container" *ngIf="isLoggedIn">
+  <div class="account-header">
+    <h1>MY ACCOUNT</h1>
+    <p>Manage Your Fun: View Tickets, Book Zones, and Track Your Adventure!</p>
+  </div>
+  <div class="account-content">
+    <div class="sidebar">
+      <ul>
+        <li>Edit Profile</li>
+        <li>FAQs</li>
+        <li>Contact Us</li>
+        <li>Delete Account</li>
+        <li (click)="logout()">Logout</li>
+      </ul>
+    </div>
+    <div class="profile-section">
+      <h2>Personal Information</h2>
+      <form (ngSubmit)="onSave()">
+        <input type="text" [(ngModel)]="user.firstName" name="firstName" placeholder="First Name">
+        <input type="text" [(ngModel)]="user.lastName" name="lastName" placeholder="Last Name">
+        <input type="email" [(ngModel)]="user.email" name="email" placeholder="Email Address">
+        <div class="phone-input">
+          <select [(ngModel)]="user.countryCode" name="countryCode">
+            <option value="965">965</option>
+            <option value="91">91</option>
+          </select>
+          <input type="text" [(ngModel)]="user.phone" name="phone" placeholder="Phone Number">
+        </div>
+        <input type="password" [(ngModel)]="user.oldPassword" name="oldPassword" placeholder="Old Password">
+        <input type="password" [(ngModel)]="user.newPassword" name="newPassword" placeholder="New Password">
+        <input type="password" [(ngModel)]="user.confirmPassword" name="confirmPassword" placeholder="Confirm New Password">
+        <button type="submit">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
